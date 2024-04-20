@@ -26,9 +26,8 @@ jobs:
 
     - name: Build helloserver
       run: |
-        cd helloserver
         go mod tidy
-        go build ./helloserver
+        go build .
 
     - name: Build outyet
       run: |
