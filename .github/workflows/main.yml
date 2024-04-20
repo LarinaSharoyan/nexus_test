@@ -1,0 +1,29 @@
+name: Build Go projects
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.17' 
+
+    - name: Build hello
+      run: go build ./hello
+
+    - name: Build helloserver
+      run: go build ./helloserver
+
+    - name: Build outyet
+      run: go build ./outyet
+
