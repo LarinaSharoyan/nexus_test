@@ -26,13 +26,13 @@ jobs:
 
     - name: Build helloserver
       run: |
-        cd hello
+        cd helloserver
         go mod tidy
         go build ./helloserver
 
     - name: Build outyet
       run: |
-        cd hello
+        cd outyet
         go mod tidy
         go build ./outyet
 
