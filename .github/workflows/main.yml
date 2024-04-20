@@ -29,8 +29,8 @@ jobs:
     #     go mod tidy
     #     go build .
 
-    - name: Build outyet
-      run: |
-        go mod tidy
-        go build ./outyet
+    # - name: Build outyet
+    #   run: |
+    #     go mod tidy
+    #     go build ./outyet
 
