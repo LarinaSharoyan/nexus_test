@@ -24,14 +24,13 @@ jobs:
         go mod tidy
         go build .
 
-    - name: Build helloserver
-      run: |
-        go mod tidy
-        go build .
+    # - name: Build helloserver
+    #   run: |
+    #     go mod tidy
+    #     go build .
 
     - name: Build outyet
       run: |
-        cd outyet
         go mod tidy
         go build ./outyet
 
