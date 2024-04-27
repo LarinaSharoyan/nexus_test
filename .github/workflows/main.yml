@@ -22,7 +22,7 @@ jobs:
       run: |
         cd hello
         go mod tidy
-        go build .
+        go build -v -o hello .
       
     - name: Set up Nexus credentials
       run: |
