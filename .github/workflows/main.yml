@@ -28,7 +28,9 @@ jobs:
       run: |
         echo 'NEXUS_USERNAME=admin' >> $GITHUB_ENV
         echo 'NEXUS_PASSWORD=sothisismypassword,.000' >> $GITHUB_ENV
+        echo 'NEXUS_BASE_URL=http://localhost:8081' >> $GITHUB_ENV
 
     - name: Publish Artifact to Nexus
       run: |
-        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello <nexus_base_url>/repository/go-dev/hello
+        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/repository/go-dev/hello
+
