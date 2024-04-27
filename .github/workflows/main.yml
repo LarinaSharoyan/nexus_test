@@ -26,10 +26,10 @@ jobs:
       
     - name: Set up Nexus credentials
       run: |
-        echo 'NEXUS_USERNAME=admin' >> $GITHUB_ENV
-        echo 'NEXUS_PASSWORD=sothisismypassword,.000' >> $GITHUB_ENV
+        echo 'NEXUS_USERNAME=your_username' >> $GITHUB_ENV
+        echo 'NEXUS_PASSWORD=your_password' >> $GITHUB_ENV
         echo 'NEXUS_BASE_URL=http://localhost:8081' >> $GITHUB_ENV
 
     - name: Publish Artifact to Nexus
       run: |
-        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello http://localhost:8081/#$NEXUS_USERNAME/repository/repositories:dev
+        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/repository/repositories:dev/hello
