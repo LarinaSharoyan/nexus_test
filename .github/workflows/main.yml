@@ -32,4 +32,4 @@ jobs:
 
     - name: Publish Artifact to Nexus
       run: |
-        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello http://localhost:8081/#$NEXUS_USERNAME/repository/repositories/dev
+        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello http://localhost:8081/#$NEXUS_USERNAME/repository/repositories:dev
