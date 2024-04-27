@@ -1,29 +1,32 @@
-name: Prerelease Workflow
+name: Build and Push Go Artifact to Nexus (Dev)
+
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Set up Go 1.x
-        uses: actions/setup-go@v2
-        with:
-            go-version: ^1.16
-            id: go
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.19'
 
-      - name: Build and package artifact
-        run: go build -v -o hello-world .
+    - name: Build hello
+      run: |
+        cd hello
+        go mod tidy
+        go build -v -o hello .
 
-      - name: Push artifact
-        run:
-          echo 'NEXUS_USERNAME=admin' >> $GITHUB_ENV
-          echo 'NEXUS_PASSWORD=sothisismypassword,.000' >> $GITHUB_ENV
-          echo 'NEXUS_BASE_URL=http://localhost:8081' >> $GITHUB_ENV
-          curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello-world $NEXUS_URL/repository/${{ github.event_name == 'push' && 'dev'}}/hello-world
+    - name: Push artifact
+      run:
+        echo 'NEXUS_USERNAME=admin' >> $GITHUB_ENV
+        echo 'NEXUS_PASSWORD=sothisismypassword,.000' >> $GITHUB_ENV
+        echo 'NEXUS_BASE_URL=http://localhost:8081' >> $GITHUB_ENV
+        curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_URL/repository/${{ github.event_name == 'push' && 'dev'}}/hello
