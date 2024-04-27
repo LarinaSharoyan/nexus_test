@@ -32,4 +32,4 @@ jobs:
 
     - name: Publish Artifact to Nexus
       run: |
-        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/repository/repositories:dev/hello
+          curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/repository/${{ github.event_name == 'push' && 'dev'}}/hello
