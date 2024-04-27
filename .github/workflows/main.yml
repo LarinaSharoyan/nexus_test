@@ -32,5 +32,4 @@ jobs:
 
     - name: Publish Artifact to Nexus
       run: |
-        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/repository/go-dev/hello
-
+        curl -v -u $NEXUS_USERNAME:$NEXUS_PASSWORD --upload-file hello $NEXUS_BASE_URL/$NEXUS_USERNAME/repository/repositories:dev/hello
